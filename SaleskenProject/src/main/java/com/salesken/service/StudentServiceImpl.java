@@ -20,8 +20,8 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student createStudent(Student student) {
 		
-		Semester sem1=new Semester(1,0,0,0);
-		Semester sem2=new Semester(2,0,0,0);
+		Semester sem1=new Semester(1,null,null,null);
+		Semester sem2=new Semester(2,null,null,null);
 		student.getSemesters().add(sem1);
 		student.getSemesters().add(sem2);
 		
@@ -31,8 +31,34 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public MarksReportDTO averageReports(Integer semesterId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Student>students=(List<Student>) sRepo.findAll();
+		int english=0;
+		int maths=0;
+		int science=0;
+		int totalStudents=0;
+		for(int i=0; i<students.size(); i++) {
+				Integer eng=students.get(i).getSemesters().get(semesterId-1).getEnglish();
+				Integer math=students.get(i).getSemesters().get(semesterId-1).getMaths();
+				Integer sci=students.get(i).getSemesters().get(semesterId-1).getScience();
+				if(eng==null && math==null && sci==null) {
+					continue;
+				}
+				else {
+					english+=eng; math+=maths; science+=sci;
+					totalStudents++;
+				}
+			}
+		int totalScoredMarks=english+maths+science;
+		int totalMarks=totalStudents*300;
+		
+		Double percentile=((double)totalScoredMarks/totalMarks)*100;
+		
+		MarksReportDTO report=new MarksReportDTO();
+		report.setEnglish((double)english/totalStudents);
+		report.setMaths((double)maths/totalStudents);
+		report.setScience((double)science/totalStudents);
+		report.setAveragePercentile(percentile);
+		return report;
 	}
 
 	@Override
@@ -55,5 +81,6 @@ public class StudentServiceImpl implements StudentService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }

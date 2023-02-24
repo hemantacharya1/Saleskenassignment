@@ -4,9 +4,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<%@include file="./Base.jsp"%>
+<title>Student Report System</title>
 </head>
-<body>
-	"Hello welcome to student management"
+<body style="background-color: #eee8ec">
+	<div class="container mt-3 text-center" border-radius="150px">
+		<h1 style="font-size: 60px">Welcome To Student Reports System</h1>
+		<br> <br>
+		<div class="list-group">
+				<a href="./addstudent.jsp" class="list-group-item list-group-item-action"><h3>Add New Student</h3></a>
+				<a href="./addmarks.jsp" class="list-group-item list-group-item-action"><h3>Edit Student Marks</h3></a> 
+				<a href="./reports.jsp" class="list-group-item list-group-item-action"><h3>See Reports</h3></a>
+		</div>
+	</div>
 </body>
 </html>

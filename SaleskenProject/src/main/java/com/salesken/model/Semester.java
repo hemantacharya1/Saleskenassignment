@@ -11,9 +11,9 @@ public class Semester {
 
 	private int id;
 	
-	private int english;
+	private Integer english;
 	
-	private int maths;
+	private Integer maths;
 	
-	private int science;
+	private Integer science;
 }

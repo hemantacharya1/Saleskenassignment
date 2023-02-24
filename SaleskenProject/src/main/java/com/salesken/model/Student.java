@@ -15,24 +15,31 @@ import lombok.Data;
 public class Student {
 
 	@Id
-	private Integer roll;
+	private String roll;
+	
+	@Field(type = FieldType.Text)
 	private String name;
+	
+	@Field(type = FieldType.Text)
 	private String gender;
-	private Integer age;
+	
+	@Field(type = FieldType.Text)
 	private String address;
+	
+	@Field(type = FieldType.Text)
 	private String email;
 	
 	@Field(type = FieldType.Nested)
 	private List<Semester> semesters=new ArrayList<>();
 
-
-	public Student(int rollNumber, String name, String gender, String address, String email) {
-		// TODO Auto-generated constructor stub
-		this.roll=rollNumber;
-		this.name=name;
-		this.gender=gender;
-		this.address=address;
-		this.email=email;
+	public Student(String roll, String name, String gender, String address, String email) {
+		super();
+		this.roll = roll;
+		this.name = name;
+		this.gender = gender;
+		this.address = address;
+		this.email = email;
 	}
 
+	
 }
